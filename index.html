@@ -3,127 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L'Étage Saly - Street Menu</title>
+    <title>L'Étage Saly - Menu Digital</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
-
-        body { background: #000000; color: white; font-family: 'Inter', sans-serif; }
-        
-        /* Style Graffiti basé sur l'image */
-        .graffiti-font { font-family: 'Permanent+Marker', cursive; }
-        .neon-green { color: #a3e635; text-shadow: 0 0 10px #a3e635; }
-        .neon-blue { color: #22d3ee; text-shadow: 0 0 10px #22d3ee; }
-        .neon-yellow { color: #fde047; text-shadow: 0 0 10px #fde047; }
-        
-        /* Bordures irrégulières style "Tags" */
-        .street-card { 
-            background: rgba(255, 255, 255, 0.05); 
-            border: 2px solid #a3e635; 
-            box-shadow: 5px 5px 0px #22d3ee;
-            border-radius: 4px;
-        }
-
-        .tab-active { 
-            border-bottom: 4px solid #a3e635; 
-            color: #a3e635; 
-            transform: skewX(-10deg);
-        }
-
-        /* Fond avec légères éclaboussures de peinture (CSS) */
-        .paint-bg {
-            background-image: radial-gradient(circle at 10% 20%, rgba(163, 230, 53, 0.1) 0%, transparent 20%),
-                              radial-gradient(circle at 90% 80%, rgba(34, 211, 238, 0.1) 0%, transparent 20%);
-        }
+        body { background-color: #121212; color: #ffffff; font-family: 'Inter', sans-serif; }
+        .gold-text { color: #f0da8b; }
+        .gold-border { border-color: #f0da8b; }
+        .card-bg { background-color: #1a1a1a; border: 1px solid #333; border-radius: 8px; overflow: hidden; }
+        .tab-active { border-bottom: 2px solid #f0da8b; color: #f0da8b; }
+        .category-title { background-color: #0c1a21; color: #64b5d6; padding: 8px 12px; font-weight: bold; font-size: 0.75rem; text-transform: uppercase; display: flex; align-items: center; }
+        .price-tag { background-color: #2a2a2a; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 0.85rem; }
     </style>
 </head>
-<body class="pb-32 paint-bg">
+<body class="pb-24">
 
-    <header class="p-8 text-center border-b-2 border-dashed border-gray-800">
-        <h1 class="text-5xl font-black uppercase tracking-tighter neon-green font-serif italic">L'Étage</h1>
-        <p class="text-xs tracking-[0.3em] neon-blue mt-2 font-bold uppercase">Saly Street Vibes</p>
+    <header class="bg-black py-6 text-center shadow-lg">
+        <div class="flex flex-col items-center">
+            <img src="https://i.ibb.co/L8N74yW/logo-etage.png" alt="L'Étage Logo" class="w-24 mb-2"> <h1 class="text-3xl font-bold tracking-tighter gold-text uppercase">L'Étage</h1>
+            <p class="text-[10px] tracking-[0.3em] font-bold uppercase text-white mt-1">Discotheque - Terrasse - Snack</p>
+        </div>
     </header>
 
-    <nav class="flex overflow-x-auto bg-black sticky top-0 z-50 py-2 border-b border-gray-700 no-scrollbar">
-        <button onclick="showCat('boissons')" id="btn-boissons" class="tab-active flex-none w-1/3 py-3 font-black uppercase text-xs">Drinks</button>
-        <button onclick="showCat('shisha')" id="btn-shisha" class="flex-none w-1/3 py-3 font-black uppercase text-xs">Chicha</button>
-        <button onclick="showCat('vip')" id="btn-vip" class="flex-none w-1/3 py-3 font-black uppercase text-xs">VIP Zone</button>
+    <nav class="flex justify-between bg-[#1a1a1a] sticky top-0 z-50 px-4 border-b border-gray-800 overflow-x-auto no-scrollbar">
+        <button onclick="showCat('events')" id="btn-events" class="tab-active py-4 px-3 text-xs font-bold uppercase whitespace-nowrap">Events</button>
+        <button onclick="showCat('boissons')" id="btn-boissons" class="py-4 px-3 text-xs font-bold uppercase whitespace-nowrap">Boissons</button>
+        <button onclick="showCat('chicha')" id="btn-chicha" class="py-4 px-3 text-xs font-bold uppercase whitespace-nowrap">Chicha</button>
     </nav>
 
-    <main id="cat-boissons" class="p-6 space-y-8 animate-in fade-in duration-500">
-        <div>
-            <h2 class="text-2xl font-black italic neon-blue mb-4 uppercase skew-x-[-10deg]">Hard Drinks</h2>
-            <div class="space-y-3">
-                <div class="street-card p-4 flex justify-between items-center">
-                    <span class="font-bold">Vodka & RedBull</span>
-                    <span class="neon-green font-black">6.000</span>
-                </div>
-                <div class="street-card p-4 flex justify-between items-center border-blue-400">
-                    <span class="font-bold">Whisky & Coca</span>
-                    <span class="neon-green font-black">8.000</span>
-                </div>
-                <div class="street-card p-4 flex flex-col border-yellow-400">
-                    <div class="flex justify-between w-full">
-                        <span class="font-black uppercase">Bottle Vodka</span>
-                        <span class="neon-yellow font-black">50.000</span>
+    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        <div id="cat-boissons" class="space-y-4 contents">
+            <div class="card-bg">
+                <div class="category-title"><i class="fa-solid fa-glass-martini-alt mr-2"></i> Avec Alcool</div>
+                <div class="p-4 space-y-4">
+                    <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+                        <div><p class="font-bold">Vodka & RedBull</p><p class="text-[10px] text-gray-500">33cl</p></div>
+                        <span class="price-tag">6.000 CFA</span>
                     </div>
-                    <span class="text-[10px] text-gray-400 italic mt-1">Service VIP inclus</span>
+                    <div class="flex justify-between items-center">
+                        <div><p class="font-bold">Bouteille Vodka</p><p class="text-[10px] text-gray-500">70cl</p></div>
+                        <span class="price-tag">50.000 CFA</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-bg">
+                <div class="category-title"><i class="fa-solid fa-beer-mug-empty mr-2"></i> Sans Alcool</div>
+                <div class="p-4 space-y-4">
+                    <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+                        <div><p class="font-bold">Coca-Cola</p><p class="text-[10px] text-gray-500">33cl</p></div>
+                        <span class="price-tag">2.000 CFA</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div><p class="font-bold">Gnamakoudji</p><p class="text-[10px] text-gray-500">Maison</p></div>
+                        <span class="price-tag">2.000 CFA</span>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div>
-            <h2 class="text-2xl font-black italic neon-green mb-4 uppercase skew-x-[-10deg]">Soft Side</h2>
-            <div class="space-y-3">
-                <div class="street-card p-4 flex justify-between items-center">
-                    <span>Coca-Cola <small class="text-gray-500">33cl</small></span>
-                    <span class="font-black">2.000</span>
-                </div>
-                <div class="street-card p-4 flex justify-between items-center">
-                    <span class="neon-blue">Gnamakoudji</span>
-                    <span class="font-black">2.000</span>
-                </div>
+        <div id="cat-chicha" class="card-bg relative group">
+            <div class="category-title" style="background-color: #210c1a; color: #d664b5;">
+                <i class="fa-solid fa-cloud mr-2"></i> Lounge Chicha
+            </div>
+            <div class="p-6 text-center bg-gradient-to-b from-transparent to-black/60">
+                <img src="https://cdn-icons-png.flaticon.com/512/2311/2311915.png" class="w-12 mx-auto mb-4 opacity-50 invert" alt="chicha icon">
+                <h3 class="text-xl font-black gold-text italic mb-2">LOUNGE CHICHA</h3>
+                <p class="text-xs text-gray-400 mb-4">Parfums : Hawï • Love 66 • Menthe • Double Pomme</p>
+                <span class="bg-[#f0da8b] text-black px-6 py-2 rounded-full font-black">10.000 CFA</span>
             </div>
         </div>
-    </main>
 
-    <main id="cat-shisha" class="hidden p-6 animate-in zoom-in duration-300">
-        <div class="border-4 border-double border-cyan-500 p-6 rounded-lg text-center bg-black/60 relative overflow-hidden">
-            <div class="absolute top-0 right-0 p-2 opacity-20 text-6xl">💨</div>
-            <h2 class="text-4xl font-black neon-blue mb-6 italic">SHISHA</h2>
-            <div class="space-y-4 text-xl font-bold">
-                <p class="text-white">Hawï <span class="text-cyan-500">•</span> Love 66</p>
-                <p class="text-white">Menthe <span class="text-cyan-500">•</span> D. Pomme</p>
+        <div id="cat-vip" class="card-bg">
+            <div class="category-title" style="background-color: #1a150c; color: #f0da8b;">
+                <i class="fa-solid fa-crown mr-2"></i> Espace Prestige
             </div>
-            <div class="mt-8 text-3xl font-black bg-lime-400 text-black inline-block px-6 py-2 rotate-[-3deg]">
-                10.000 CFA
+            <div class="p-8 text-center">
+                <div class="border border-[#f0da8b]/30 p-4 rounded-lg">
+                    <p class="text-sm font-bold gold-text uppercase tracking-widest">Réservation de Tables</p>
+                    <p class="text-[10px] text-gray-500 mt-1 uppercase">Accès VIP Prioritaire</p>
+                </div>
             </div>
         </div>
-    </main>
+    </div>
 
-    <footer class="fixed bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
-        <div class="max-w-md mx-auto flex space-x-2">
-            <a href="https://wa.me/221339547357" class="flex-1 bg-cyan-400 text-black py-4 rounded-none font-black text-center uppercase tracking-tighter shadow-[4px_4px_0px_#a3e635] active:translate-y-1 active:shadow-none transition-all flex items-center justify-center space-x-2">
-                <i class="fa-brands fa-whatsapp text-xl"></i>
-                <span>Book your table</span>
-            </a>
-            <a href="tel:+221339547357" class="bg-lime-400 text-black p-4 shadow-[4px_4px_0px_#22d3ee]">
-                <i class="fa-solid fa-phone"></i>
-            </a>
-        </div>
+    <footer class="fixed bottom-0 w-full p-4 flex space-x-2 bg-gradient-to-t from-black to-transparent">
+        <a href="tel:+221339547357" class="bg-[#2a2a2a] p-5 rounded-xl border border-gray-700">
+            <i class="fa-solid fa-phone gold-text"></i>
+        </a>
+        <a href="https://wa.me/221339547357" class="flex-1 bg-[#f0da8b] text-black py-4 rounded-xl font-black text-center uppercase text-sm flex items-center justify-center space-x-2">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+            <span>Réserver une table</span>
+        </a>
     </footer>
 
     <script>
         function showCat(catId) {
-            ['boissons', 'shisha', 'vip'].forEach(id => {
-                const el = document.getElementById('cat-' + id);
-                if(el) el.classList.add('hidden');
-                const btn = document.getElementById('btn-' + id);
-                if(btn) btn.classList.remove('tab-active');
-            });
-            document.getElementById('cat-' + catId).classList.remove('hidden');
+            // Logique de changement d'onglet simplifiée
+            const buttons = document.querySelectorAll('nav button');
+            buttons.forEach(btn => btn.classList.remove('tab-active'));
             document.getElementById('btn-' + catId).classList.add('tab-active');
+            // Vous pouvez ajouter ici la logique pour filtrer les cartes si nécessaire
         }
     </script>
 </body>
