@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Étage Saly - Club & Lounge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { background: #020617; color: white; font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); }
+        .neon-gold { text-shadow: 0 0 15px #fbbf24; color: #fbbf24; }
+        .tab-active { border-bottom: 3px solid #fbbf24; color: #fbbf24; }
+        .whatsapp-btn { background: #25D366; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .event-card { transition: transform 0.3s ease; }
+        .event-card:active { transform: scale(0.98); }
+    </style>
+</head>
+<body class="pb-40">
+
+    <header class="p-8 text-center bg-gradient-to-b from-slate-900 to-transparent">
+        <h1 class="text-4xl font-black tracking-widest uppercase neon-gold mb-1">L'Étage</h1>
+        <p class="text-[10px] tracking-[0.4em] text-gray-400 uppercase font-bold">Saly Nightlife • Sénégal</p>
+    </header>
+
+    <nav class="flex overflow-x-auto bg-black/80 sticky top-0 z-50 backdrop-blur-xl no-scrollbar border-b border-white/5">
+        <button onclick="showCat('events')" id="btn-events" class="tab-active flex-none w-1/4 py-4 font-bold uppercase text-[10px] tracking-widest text-amber-500">Soirées</button>
+        <button onclick="showCat('vip')" id="btn-vip" class="flex-none w-1/4 py-4 font-bold uppercase text-[10px] tracking-widest">VIP</button>
+        <button onclick="showCat('menu')" id="btn-menu" class="flex-none w-1/4 py-4 font-bold uppercase text-[10px] tracking-widest">Menu</button>
+        <button onclick="showCat('shisha')" id="btn-shisha" class="flex-none w-1/4 py-4 font-bold uppercase text-[10px] tracking-widest">Chicha</button>
+    </nav>
+
+    <main id="cat-events" class="p-4 space-y-6">
+        <div class="relative h-80 rounded-[2rem] overflow-hidden border border-white/10 event-card shadow-2xl">
+            <img src="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?auto=format&fit=crop&w=800" class="w-full h-full object-cover opacity-70">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-6 flex flex-col justify-end">
+                <span class="bg-amber-500 text-black font-black text-[10px] px-3 py-1 rounded-full mb-3 w-fit">VENDREDI 02 JANVIER</span>
+                <h3 class="text-3xl font-black italic uppercase leading-none">AFROBEAT ELITE</h3>
+                <p class="text-sm text-gray-300 mt-2">Mix by DJ Official L'Étage</p>
+            </div>
+        </div>
+    </main>
+
+    <main id="cat-vip" class="hidden p-4 space-y-4">
+        <div class="glass p-5 rounded-2xl flex justify-between items-center border-l-4 border-amber-500">
+            <div><h3 class="font-bold">Pack Prestige</h3><p class="text-xs text-gray-400">Champagne + Vodka Premium</p></div>
+            <span class="font-black text-amber-500">150.000 <small>CFA</small></span>
+        </div>
+        <div class="glass p-5 rounded-2xl flex justify-between items-center">
+            <div><h3 class="font-bold">Grey Goose</h3><p class="text-xs text-gray-400">L'excellence française</p></div>
+            <span class="font-black">75.000 <small>CFA</small></span>
+        </div>
+    </main>
+
+    <main id="cat-menu" class="hidden p-4 space-y-3">
+        <div class="glass p-4 rounded-xl flex justify-between items-center">
+            <span>Cocktail "Le Saly"</span>
+            <span class="font-bold text-cyan-400">7.500 CFA</span>
+        </div>
+        <div class="glass p-4 rounded-xl flex justify-between items-center">
+            <span>Bière Gazelle (63cl)</span>
+            <span class="font-bold text-cyan-400">3.500 CFA</span>
+        </div>
+    </main>
+
+    <footer class="fixed bottom-0 w-full p-4 flex flex-col space-y-2 bg-gradient-to-t from-black via-black to-transparent">
+        <div class="flex space-x-2 w-full max-w-md mx-auto">
+            <a href="tel:+221339547357" class="bg-slate-800 p-5 rounded-2xl text-white flex items-center justify-center transition-transform active:scale-90 border border-white/10">
+                <i class="fa-solid fa-phone-flip"></i>
+            </a>
+            
+            <a href="https://wa.me/221339547357?text=Bonjour%20L'Étage%20Saly,%20je%20souhaiterais%20réserver%20une%20table%20pour%20ce%20soir." 
+               class="whatsapp-btn flex-1 py-5 rounded-2xl text-center font-black text-white flex items-center justify-center space-x-3 transition-transform active:scale-95">
+                <i class="fa-brands fa-whatsapp text-2xl"></i>
+                <span class="tracking-widest uppercase text-sm">Réserver VIP</span>
+            </a>
+        </div>
+        <p class="text-[8px] text-center text-gray-500 uppercase tracking-widest pt-2">L'abus d'alcool est dangereux pour la santé</p>
+    </footer>
+
+    <script>
+        function showCat(catId) {
+            ['events', 'vip', 'menu', 'shisha'].forEach(id => {
+                const el = document.getElementById('cat-' + id);
+                if(el) el.classList.add('hidden');
+                const btn = document.getElementById('btn-' + id);
+                if(btn) {
+                    btn.classList.remove('tab-active', 'text-amber-500');
+                    btn.classList.add('text-white');
+                }
+            });
+            document.getElementById('cat-' + catId).classList.remove('hidden');
+            document.getElementById('btn-' + catId).classList.add('tab-active', 'text-amber-500');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
+</body>
+</html>
