@@ -6,11 +6,10 @@
     <title>L'Étage Saly - Webapp Officielle</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;700&display=swap');
-
         :root {
-            --gold: #f0da8b; /* Couleur or extraite du logo */
+            --gold: #f0da8b;
             --dark: #0a0a0a;
         }
 
@@ -20,11 +19,17 @@
             font-family: 'Inter', sans-serif; 
         }
 
-        .gold-text { color: var(--gold); }
-        .gold-border { border-color: var(--gold); }
-        .gold-bg { background-color: var(--gold); }
+        /* Style Western Deco JNL pour les titres et menus */
+        .western-font { 
+            font-family: 'Goldman', cursive; 
+            letter-spacing: 0.05em;
+        }
 
-        .title-font { font-family: 'Cinzel', serif; }
+        .gold-text { color: var(--gold); }
+        .tab-active { 
+            border-bottom: 3px solid var(--gold); 
+            color: var(--gold); 
+        }
 
         .glass-card { 
             background: rgba(255, 255, 255, 0.03); 
@@ -33,98 +38,48 @@
             border-radius: 15px;
         }
 
-        .tab-active { 
-            border-bottom: 3px solid var(--gold); 
-            color: var(--gold); 
-            font-weight: bold;
-        }
-
         .no-scrollbar::-webkit-scrollbar { display: none; }
-        
-        .hero-gradient {
-            background: linear-gradient(to bottom, rgba(10,10,10,0) 0%, rgba(10,10,10,1) 100%);
-        }
     </style>
 </head>
 <body class="pb-32">
 
     <header class="pt-8 pb-4 text-center bg-gradient-to-b from-zinc-900 to-black">
         <div class="flex flex-col items-center">
-            <div class="w-32 mb-4">
-                <img src="https://i.ibb.co/L8N74yW/aigle-gold.png" alt="Logo L'Étage" class="w-full h-auto"> 
+            <div class="w-48 mb-2">
+                <img src="https://i.ibb.co/vCqfs6H/421925411-904095145055966-126534642557729583-n.jpg" alt="Logo L'Étage Saly" class="w-full h-auto shadow-2xl"> 
             </div>
-            <h1 class="text-4xl title-font gold-text tracking-widest uppercase">L'Étage</h1>
-            <p class="text-[10px] tracking-[0.4em] uppercase text-gray-400 font-bold mt-1">Discotheque - Terrasse - Snack</p>
+            <h1 class="text-3xl western-font gold-text uppercase tracking-widest mt-2">L'Étage</h1>
+            <p class="text-[9px] tracking-[0.3em] uppercase text-gray-400 font-bold">Discotheque - Terrasse - Snack</p>
         </div>
     </header>
 
-    <nav class="flex overflow-x-auto bg-black/90 sticky top-0 z-50 backdrop-blur-xl no-scrollbar border-b border-white/5">
-        <button onclick="showCat('events')" id="btn-events" class="tab-active flex-none w-1/5 py-4 text-[10px] uppercase tracking-tighter">Soirées</button>
-        <button onclick="showCat('boissons')" id="btn-boissons" class="flex-none w-1/5 py-4 text-[10px] uppercase tracking-tighter text-gray-400">Boissons</button>
-        <button onclick="showCat('vip')" id="btn-vip" class="flex-none w-1/5 py-4 text-[10px] uppercase tracking-tighter text-gray-400">VIP</button>
-        <button onclick="showCat('shisha')" id="btn-shisha" class="flex-none w-1/5 py-4 text-[10px] uppercase tracking-tighter text-gray-400">Chicha</button>
-        <button onclick="showCat('map')" id="btn-map" class="flex-none w-1/5 py-4 text-[10px] uppercase tracking-tighter text-gray-400">Accès</button>
+    <nav class="flex overflow-x-auto bg-black/95 sticky top-0 z-50 backdrop-blur-xl no-scrollbar border-b border-white/5">
+        <button onclick="showCat('events')" id="btn-events" class="western-font tab-active flex-none w-1/5 py-4 text-[10px] uppercase">Soirées</button>
+        <button onclick="showCat('boissons')" id="btn-boissons" class="western-font flex-none w-1/5 py-4 text-[10px] uppercase text-gray-400">Boissons</button>
+        <button onclick="showCat('vip')" id="btn-vip" class="western-font flex-none w-1/5 py-4 text-[10px] uppercase text-gray-400">VIP</button>
+        <button onclick="showCat('shisha')" id="btn-shisha" class="western-font flex-none w-1/5 py-4 text-[10px] uppercase text-gray-400">Chicha</button>
+        <button onclick="showCat('map')" id="btn-map" class="western-font flex-none w-1/5 py-4 text-[10px] uppercase text-gray-400">Accès</button>
     </nav>
 
-    <main id="cat-events" class="p-4 space-y-6">
-        <div class="flex items-center justify-between border-b border-zinc-800 pb-2">
-            <h2 class="title-font gold-text text-lg uppercase">Dernières Soirées</h2>
-            <a href="https://www.facebook.com/louisgrenier.salyletage" target="_blank" class="text-xs text-blue-500"><i class="fab fa-facebook mr-1"></i>Voir tout</a>
-        </div>
-        
-        <div class="glass-card overflow-hidden">
-            <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1514525253361-bee8718a74a7?auto=format&fit=crop&w=800');"></div>
-            <div class="p-4">
-                <span class="text-[10px] gold-text font-bold">PUBLIÉ RÉCEMMENT</span>
-                <p class="text-sm mt-2">Préparez-vous pour une nuit inoubliable à Saly ! DJ Guest en direct ce weekend...</p>
-            </div>
-        </div>
-        </main>
-
-    <main id="cat-boissons" class="hidden p-4 space-y-8">
-        <div>
-            <h2 class="title-font gold-text text-lg uppercase border-b border-zinc-800 pb-2 mb-4">Boissons Alcoolisées</h2>
-            <div class="space-y-4">
-                <div class="flex justify-between items-center"><span class="text-sm">Vodka RedBull</span><span class="text-sm font-bold gold-text">6.000 CFA</span></div>
-                <div class="flex justify-between items-center"><span class="text-sm">Whisky Coca</span><span class="text-sm font-bold gold-text">8.000 CFA</span></div>
-                <div class="flex justify-between items-center"><span class="text-sm">Bouteille Champagne (Luxe)</span><span class="text-sm font-bold gold-text">95.000 CFA</span></div>
-                <div class="flex justify-between items-center"><span class="text-sm">Bière Locale (Flag/Gazelle)</span><span class="text-sm font-bold gold-text">3.500 CFA</span></div>
-            </div>
-        </div>
-
-        <div>
-            <h2 class="title-font gold-text text-lg uppercase border-b border-zinc-800 pb-2 mb-4">Non Alcoolisées</h2>
-            <div class="space-y-4">
-                <div class="flex justify-between items-center"><span class="text-sm">Coca / Tonic / Sprite</span><span class="text-sm font-bold gold-text">2.000 CFA</span></div>
-                <div class="flex justify-between items-center"><span class="text-sm">Jus de Bissap Maison</span><span class="text-sm font-bold gold-text">2.500 CFA</span></div>
-                <div class="flex justify-between items-center"><span class="text-sm">Eau Minérale (50cl)</span><span class="text-sm font-bold gold-text">1.500 CFA</span></div>
-            </div>
+    <main id="cat-boissons" class="hidden p-4 space-y-6">
+        <h2 class="western-font gold-text text-lg uppercase border-b border-zinc-800 pb-2">Carte des Boissons</h2>
+        <div class="glass-card p-4 space-y-4">
+            <div class="flex justify-between items-center"><span class="text-sm">Vodka RedBull</span><span class="text-sm font-bold gold-text">6.000 CFA</span></div>
+            <div class="flex justify-between items-center"><span class="text-sm">Whisky Coca</span><span class="text-sm font-bold gold-text">8.000 CFA</span></div>
+            <div class="flex justify-between items-center border-t border-zinc-800 pt-2"><span class="text-sm">Bouteille Vodka</span><span class="text-sm font-bold gold-text">50.000 CFA</span></div>
+            <div class="flex justify-between items-center"><span class="text-sm">Bouteille Whisky</span><span class="text-sm font-bold gold-text">70.000 CFA</span></div>
         </div>
     </main>
 
-    <main id="cat-map" class="hidden p-4 space-y-4">
-        <h2 class="title-font gold-text text-lg uppercase border-b border-zinc-800 pb-2">Localisation</h2>
-        <div class="glass-card p-2">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3862.883303692!2d-17.02!3d14.45!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTTCsDI3JzAwLjAiTiAxN8KwMDEnMTIuMCJX!5e0!3m2!1sfr!2ssn!4v1625000000000!5m2!1sfr!2ssn" 
-                class="w-full h-64 rounded-xl border-0" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-        <p class="text-center text-xs text-gray-400 mt-4 uppercase tracking-widest">Face Agence Sonatel Saly</p>
-    </main>
-
-    <footer class="fixed bottom-0 w-full p-4 bg-gradient-to-t from-black via-black to-transparent space-y-3 z-50">
+    <footer class="fixed bottom-0 w-full p-4 bg-gradient-to-t from-black via-black to-transparent z-50">
         <div class="flex space-x-2 max-w-md mx-auto">
-            <a href="https://www.facebook.com/louisgrenier.salyletage" target="_blank" class="bg-blue-600 p-4 rounded-xl flex items-center justify-center transition active:scale-95">
+            <a href="https://www.facebook.com/louisgrenier.salyletage" target="_blank" class="bg-blue-600 p-4 rounded-xl flex items-center justify-center">
                 <i class="fab fa-facebook-f text-white text-xl"></i>
             </a>
-
-            <a href="https://wa.me/221765500906?text=Bonjour%20L'Étage%20Saly,%20je%20souhaiterais%20réserver%20une%20table%20pour%20ce%20soir." 
-               class="flex-1 gold-bg text-black py-4 rounded-xl font-black text-center uppercase text-xs flex items-center justify-center space-x-2 shadow-lg shadow-yellow-500/20 active:scale-95 transition">
+            <a href="https://wa.me/221765500906?text=Bonjour%20L'Étage%20Saly,%20je%20souhaiterais%20réserver%20une%20table%20VIP." 
+               class="flex-1 bg-[#f0da8b] text-black py-4 rounded-xl font-bold text-center uppercase text-xs flex items-center justify-center space-x-2 western-font">
                 <i class="fab fa-whatsapp text-xl"></i>
-                <span>Réserver VIP</span>
-            </a>
-
-            <a href="tel:+221765500906" class="bg-zinc-800 p-4 rounded-xl flex items-center justify-center border border-zinc-700 active:scale-95 transition">
-                <i class="fas fa-phone-alt gold-text"></i>
+                <span>Réserver une table</span>
             </a>
         </div>
     </footer>
@@ -135,23 +90,11 @@
             categories.forEach(id => {
                 const el = document.getElementById('cat-' + id);
                 if (el) el.classList.add('hidden');
-                
                 const btn = document.getElementById('btn-' + id);
-                if (btn) {
-                    btn.classList.remove('tab-active');
-                    btn.classList.add('text-gray-400');
-                }
+                if (btn) btn.classList.remove('tab-active', 'text-gold');
             });
-            
-            const activeEl = document.getElementById('cat-' + catId);
-            if (activeEl) activeEl.classList.remove('hidden');
-            
-            const activeBtn = document.getElementById('btn-' + catId);
-            if (activeBtn) {
-                activeBtn.classList.add('tab-active');
-                activeBtn.classList.remove('text-gray-400');
-            }
-            window.scrollTo({top: 0, behavior: 'smooth'});
+            document.getElementById('cat-' + catId).classList.remove('hidden');
+            document.getElementById('btn-' + catId).classList.add('tab-active');
         }
     </script>
 </body>
