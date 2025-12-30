@@ -3,108 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L'Étage Saly - Menu Digital</title>
+    <title>L'Étage Saly - Webapp Officielle</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body { background-color: #121212; color: #ffffff; font-family: 'Inter', sans-serif; }
-        .gold-text { color: #f0da8b; }
-        .gold-border { border-color: #f0da8b; }
-        .card-bg { background-color: #1a1a1a; border: 1px solid #333; border-radius: 8px; overflow: hidden; }
-        .tab-active { border-bottom: 2px solid #f0da8b; color: #f0da8b; }
-        .category-title { background-color: #0c1a21; color: #64b5d6; padding: 8px 12px; font-weight: bold; font-size: 0.75rem; text-transform: uppercase; display: flex; align-items: center; }
-        .price-tag { background-color: #2a2a2a; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 0.85rem; }
+        @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Inter:wght@400;700;900&display=swap');
+        body { background: #000000; color: white; font-family: 'Inter', sans-serif; }
+        .graffiti-font { font-family: 'Permanent Marker', cursive; }
+        .neon-green { color: #a3e635; text-shadow: 0 0 10px #a3e635; }
+        .neon-blue { color: #22d3ee; text-shadow: 0 0 10px #22d3ee; }
+        .neon-yellow { color: #fde047; text-shadow: 0 0 10px #fde047; }
+        .street-card { background: rgba(255, 255, 255, 0.05); border: 2px solid #a3e635; box-shadow: 5px 5px 0px #22d3ee; border-radius: 8px; }
+        .tab-active { border-bottom: 4px solid #a3e635; color: #a3e635; font-weight: 900; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .map-container { position: relative; padding-bottom: 75%; height: 0; overflow: hidden; border-radius: 15px; border: 2px solid #22d3ee; }
+        .map-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
     </style>
 </head>
-<body class="pb-24">
+<body class="pb-40">
 
-    <header class="bg-black py-6 text-center shadow-lg">
-        <div class="flex flex-col items-center">
-            <img src="https://i.ibb.co/L8N74yW/logo-etage.png" alt="L'Étage Logo" class="w-24 mb-2"> <h1 class="text-3xl font-bold tracking-tighter gold-text uppercase">L'Étage</h1>
-            <p class="text-[10px] tracking-[0.3em] font-bold uppercase text-white mt-1">Discotheque - Terrasse - Snack</p>
-        </div>
+    <header class="p-8 text-center border-b-2 border-dashed border-gray-800 bg-black">
+        <h1 class="text-5xl font-black uppercase graffiti-font neon-green italic">L'Étage</h1>
+        <p class="text-xs tracking-[0.3em] neon-blue mt-2 font-bold uppercase text-center">Saly • Sénégal</p>
     </header>
 
-    <nav class="flex justify-between bg-[#1a1a1a] sticky top-0 z-50 px-4 border-b border-gray-800 overflow-x-auto no-scrollbar">
-        <button onclick="showCat('events')" id="btn-events" class="tab-active py-4 px-3 text-xs font-bold uppercase whitespace-nowrap">Events</button>
-        <button onclick="showCat('boissons')" id="btn-boissons" class="py-4 px-3 text-xs font-bold uppercase whitespace-nowrap">Boissons</button>
-        <button onclick="showCat('chicha')" id="btn-chicha" class="py-4 px-3 text-xs font-bold uppercase whitespace-nowrap">Chicha</button>
+    <nav class="flex overflow-x-auto bg-black sticky top-0 z-50 py-2 border-b border-gray-700 no-scrollbar text-center">
+        <button onclick="showCat('events')" id="btn-events" class="tab-active flex-none w-1/5 py-4 font-bold uppercase text-[9px] tracking-widest text-center">Soirées</button>
+        <button onclick="showCat('boissons')" id="btn-boissons" class="flex-none w-1/5 py-4 font-bold uppercase text-[9px] tracking-widest text-center">Boissons</button>
+        <button onclick="showCat('vip')" id="btn-vip" class="flex-none w-1/5 py-4 font-bold uppercase text-[9px] tracking-widest text-center">VIP</button>
+        <button onclick="showCat('shisha')" id="btn-shisha" class="flex-none w-1/5 py-4 font-bold uppercase text-[9px] tracking-widest text-center">Chicha</button>
+        <button onclick="showCat('map')" id="btn-map" class="flex-none w-1/5 py-4 font-bold uppercase text-[9px] tracking-widest text-center">Accès</button>
     </nav>
 
-    <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <main id="cat-events" class="p-6 space-y-4">
+        <h2 class="text-2xl font-black italic neon-blue uppercase graffiti-font">L'Agenda</h2>
+        <div class="street-card p-4">
+            <p class="text-sm italic text-gray-400">Retrouvez nos événements en direct sur Facebook.</p>
+            <a href="https://www.facebook.com/louisgrenier.salyletage" target="_blank" class="mt-4 block text-center bg-blue-600 py-3 rounded font-bold text-xs uppercase text-center">Consulter la page Facebook</a>
+        </div>
+    </main>
 
-        <div id="cat-boissons" class="space-y-4 contents">
-            <div class="card-bg">
-                <div class="category-title"><i class="fa-solid fa-glass-martini-alt mr-2"></i> Avec Alcool</div>
-                <div class="p-4 space-y-4">
-                    <div class="flex justify-between items-center border-b border-gray-800 pb-2">
-                        <div><p class="font-bold">Vodka & RedBull</p><p class="text-[10px] text-gray-500">33cl</p></div>
-                        <span class="price-tag">6.000 CFA</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <div><p class="font-bold">Bouteille Vodka</p><p class="text-[10px] text-gray-500">70cl</p></div>
-                        <span class="price-tag">50.000 CFA</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-bg">
-                <div class="category-title"><i class="fa-solid fa-beer-mug-empty mr-2"></i> Sans Alcool</div>
-                <div class="p-4 space-y-4">
-                    <div class="flex justify-between items-center border-b border-gray-800 pb-2">
-                        <div><p class="font-bold">Coca-Cola</p><p class="text-[10px] text-gray-500">33cl</p></div>
-                        <span class="price-tag">2.000 CFA</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <div><p class="font-bold">Gnamakoudji</p><p class="text-[10px] text-gray-500">Maison</p></div>
-                        <span class="price-tag">2.000 CFA</span>
-                    </div>
-                </div>
+    <main id="cat-boissons" class="hidden p-6 space-y-8">
+        <div>
+            <h2 class="text-xl font-black italic neon-green uppercase graffiti-font mb-4">Boissons Alcoolisées</h2>
+            <div class="space-y-3">
+                <div class="street-card p-4 flex justify-between items-center text-center"><span>Vodka & RedBull</span><span class="neon-green font-bold text-center">6.000 CFA</span></div>
+                <div class="street-card p-4 flex justify-between items-center text-center"><span>Bouteille Vodka</span><span class="neon-yellow font-bold text-center">50.000 CFA</span></div>
             </div>
         </div>
-
-        <div id="cat-chicha" class="card-bg relative group">
-            <div class="category-title" style="background-color: #210c1a; color: #d664b5;">
-                <i class="fa-solid fa-cloud mr-2"></i> Lounge Chicha
-            </div>
-            <div class="p-6 text-center bg-gradient-to-b from-transparent to-black/60">
-                <img src="https://cdn-icons-png.flaticon.com/512/2311/2311915.png" class="w-12 mx-auto mb-4 opacity-50 invert" alt="chicha icon">
-                <h3 class="text-xl font-black gold-text italic mb-2">LOUNGE CHICHA</h3>
-                <p class="text-xs text-gray-400 mb-4">Parfums : Hawï • Love 66 • Menthe • Double Pomme</p>
-                <span class="bg-[#f0da8b] text-black px-6 py-2 rounded-full font-black">10.000 CFA</span>
+        <div>
+            <h2 class="text-xl font-black italic neon-blue uppercase graffiti-font mb-4">Non Alcoolisées</h2>
+            <div class="space-y-3 text-center">
+                <div class="street-card p-4 flex justify-between items-center text-center"><span>Coca / Tonic</span><span class="neon-blue font-bold text-center">2.000 CFA</span></div>
+                <div class="street-card p-4 flex justify-between items-center text-center"><span>Gnamakoudji</span><span class="neon-green font-bold text-center">2.000 CFA</span></div>
             </div>
         </div>
+    </main>
 
-        <div id="cat-vip" class="card-bg">
-            <div class="category-title" style="background-color: #1a150c; color: #f0da8b;">
-                <i class="fa-solid fa-crown mr-2"></i> Espace Prestige
-            </div>
-            <div class="p-8 text-center">
-                <div class="border border-[#f0da8b]/30 p-4 rounded-lg">
-                    <p class="text-sm font-bold gold-text uppercase tracking-widest">Réservation de Tables</p>
-                    <p class="text-[10px] text-gray-500 mt-1 uppercase">Accès VIP Prioritaire</p>
-                </div>
-            </div>
+    <main id="cat-vip" class="hidden p-6 text-center">
+        <div class="street-card p-8">
+            <i class="fa-solid fa-crown text-5xl neon-yellow mb-4 text-center"></i>
+            <h2 class="text-2xl font-black graffiti-font neon-yellow uppercase text-center">VIP Prestige</h2>
+            <p class="text-xs text-gray-400 mt-2 italic text-center text-center">Réservation obligatoire pour l'espace climatisé.</p>
         </div>
-    </div>
+    </main>
 
-    <footer class="fixed bottom-0 w-full p-4 flex space-x-2 bg-gradient-to-t from-black to-transparent">
-        <a href="tel:+221339547357" class="bg-[#2a2a2a] p-5 rounded-xl border border-gray-700">
-            <i class="fa-solid fa-phone gold-text"></i>
-        </a>
-        <a href="https://wa.me/221339547357" class="flex-1 bg-[#f0da8b] text-black py-4 rounded-xl font-black text-center uppercase text-sm flex items-center justify-center space-x-2">
-            <i class="fa-brands fa-whatsapp text-lg"></i>
-            <span>Réserver une table</span>
-        </a>
+    <main id="cat-shisha" class="hidden p-6">
+        <div class="street-card p-6 text-center border-blue-400 text-center text-center">
+            <h2 class="text-3xl font-black graffiti-font neon-blue mb-4 uppercase text-center text-center">Chicha Lounge</h2>
+            <p class="text-white font-bold mb-4 text-center">Hawï • Love 66 • Menthe • Pomme</p>
+            <div class="inline-block bg-cyan-400 text-black px-6 py-2 rounded-full font-black text-lg text-center">10.000 CFA</div>
+        </div>
+    </main>
+
+    <main id="cat-map" class="hidden p-6 space-y-4">
+        <h2 class="text-2xl font-black italic neon-blue uppercase graffiti-font">Plan d'Accès</h2>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3864.551245648!2d-17.021!3d14.44!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTTCsDI2JzI0LjAiTiAxN8KwMDEnMTUuNiJX!5e0!3m2!1sfr!2ssn!4v1625000000000" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <p class="text-center text-[10px] text-gray-400 uppercase tracking-widest text-center">Face Agence Sonatel Saly</p>
+    </main>
+
+    <footer class="fixed bottom-0 w-full p-4 bg-gradient-to-t from-black via-black to-transparent space-y-3 z-50">
+        <div class="max-w-md mx-auto flex space-x-2">
+            <a href="https://www.facebook.com/louisgrenier.salyletage" target="_blank" class="bg-blue-600 p-4 rounded-lg flex items-center justify-center text-center"><i class="fa-brands fa-facebook-f text-white text-xl text-center"></i></a>
+            <a href="https://wa.me/221765500906?text=Bonjour%20L'Étage%20Saly,%20je%20souhaiterais%20réserver%20une%20table%20pour%20ce%20soir." class="flex-1 bg-[#25D366] text-white py-4 rounded-lg font-black text-center uppercase tracking-tighter flex items-center justify-center space-x-2 text-center"><i class="fa-brands fa-whatsapp text-2xl text-center"></i><span>Réserver</span></a>
+            <a href="tel:+221765500906" class="bg-lime-400 text-black p-4 rounded-lg text-center"><i class="fa-solid fa-phone text-center"></i></a>
+        </div>
+        <p class="text-[9px] text-center text-gray-500 uppercase tracking-widest pb-2 text-center text-center">L'Étage Saly • 76 550 09 06</p>
     </footer>
 
     <script>
         function showCat(catId) {
-            // Logique de changement d'onglet simplifiée
-            const buttons = document.querySelectorAll('nav button');
-            buttons.forEach(btn => btn.classList.remove('tab-active'));
+            ['events', 'boissons', 'vip', 'shisha', 'map'].forEach(id => {
+                document.getElementById('cat-' + id).classList.add('hidden');
+                document.getElementById('btn-' + id).classList.remove('tab-active');
+            });
+            document.getElementById('cat-' + catId).classList.remove('hidden');
             document.getElementById('btn-' + catId).classList.add('tab-active');
-            // Vous pouvez ajouter ici la logique pour filtrer les cartes si nécessaire
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
     </script>
 </body>
