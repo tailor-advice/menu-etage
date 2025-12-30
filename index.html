@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L'Étage Saly - Webapp Officielle</title>
+    <title>L'Étage Saly - Menu VIP</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --gold: #f0da8b;
@@ -19,13 +19,14 @@
             font-family: 'Inter', sans-serif; 
         }
 
-        /* Style Western Deco JNL pour les titres et menus */
         .western-font { 
             font-family: 'Goldman', cursive; 
             letter-spacing: 0.05em;
         }
 
         .gold-text { color: var(--gold); }
+        .gold-bg { background-color: var(--gold); }
+        
         .tab-active { 
             border-bottom: 3px solid var(--gold); 
             color: var(--gold); 
@@ -38,13 +39,21 @@
             border-radius: 15px;
         }
 
+        /* Arrière-plan spécifique pour la Chicha */
+        .shisha-overlay {
+            background-image: linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.85)), 
+                              url('https://images.unsplash.com/photo-1516054160408-0106209b5523?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-position: center;
+        }
+
         .no-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 </head>
-<body class="pb-32">
+<body class="pb-36">
 
     <header class="pt-8 pb-4 text-center bg-gradient-to-b from-zinc-900 to-black">
-        <div class="flex flex-col items-center">
+        <div class="flex flex-col items-center px-4">
             <div class="w-48 mb-2">
                 <a href="https://ibb.co/bjDDDnZk"><img src="https://i.ibb.co/bjDDDnZk/Gemini-Generated-Image-d2r3h9d2r3h9d2r3-1.png" alt="Gemini-Generated-Image-d2r3h9d2r3h9d2r3-1" border="0"></a>
             </div>
@@ -62,22 +71,54 @@
     </nav>
 
     <main id="cat-boissons" class="hidden p-4 space-y-6">
-        <h2 class="western-font gold-text text-lg uppercase border-b border-zinc-800 pb-2">Carte des Boissons</h2>
-        <div class="glass-card p-4 space-y-4">
-            <div class="flex justify-between items-center"><span class="text-sm">Vodka RedBull</span><span class="text-sm font-bold gold-text">6.000 CFA</span></div>
-            <div class="flex justify-between items-center"><span class="text-sm">Whisky Coca</span><span class="text-sm font-bold gold-text">8.000 CFA</span></div>
-            <div class="flex justify-between items-center border-t border-zinc-800 pt-2"><span class="text-sm">Bouteille Vodka</span><span class="text-sm font-bold gold-text">50.000 CFA</span></div>
-            <div class="flex justify-between items-center"><span class="text-sm">Bouteille Whisky</span><span class="text-sm font-bold gold-text">70.000 CFA</span></div>
+        <div>
+            <h2 class="western-font gold-text text-lg uppercase border-b border-zinc-800 pb-2 mb-4">Avec Alcool</h2>
+            <div class="glass-card p-4 space-y-4">
+                <div class="flex justify-between items-center"><span>Vodka & RedBull</span><span class="gold-text font-bold">6.000 CFA</span></div>
+                <div class="flex justify-between items-center"><span>Whisky & Coca</span><span class="gold-text font-bold">8.000 CFA</span></div>
+                <div class="flex justify-between items-center border-t border-white/5 pt-4"><span>Bouteille Vodka</span><span class="gold-text font-bold">50.000 CFA</span></div>
+                <div class="flex justify-between items-center"><span>Bouteille Whisky</span><span class="gold-text font-bold">70.000 CFA</span></div>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="western-font gold-text text-lg uppercase border-b border-zinc-800 pb-2 mb-4">Sans Alcool</h2>
+            <div class="glass-card p-4 space-y-4">
+                <div class="flex justify-between items-center"><span>Coca 33cl</span><span class="gold-text font-bold">2.000 CFA</span></div>
+                <div class="flex justify-between items-center"><span>Jus 50cl</span><span class="gold-text font-bold">3.000 CFA</span></div>
+                <div class="flex justify-between items-center"><span>Eau 50cl</span><span class="gold-text font-bold">1.500 CFA</span></div>
+                <div class="flex justify-between items-center"><span>Gnamakoudji</span><span class="gold-text font-bold">2.000 CFA</span></div>
+            </div>
         </div>
     </main>
 
-    <footer class="fixed bottom-0 w-full p-4 bg-gradient-to-t from-black via-black to-transparent z-50">
+    <main id="cat-shisha" class="hidden p-4 min-h-[50vh] flex items-center">
+        <div class="shisha-overlay w-full p-8 rounded-2xl border border-white/10 text-center shadow-2xl">
+            <i class="fas fa-smog gold-text text-4xl mb-4"></i>
+            <h2 class="western-font gold-text text-2xl uppercase mb-6 tracking-widest">Lounge Chicha</h2>
+            
+            <div class="space-y-2 mb-8 text-lg italic text-gray-200">
+                <p>Hawï • Love 66</p>
+                <p>Menthe • Double Pomme</p>
+            </div>
+
+            <div class="inline-block gold-bg text-black px-8 py-3 rounded-full font-black text-xl western-font">
+                10.000 CFA
+            </div>
+        </div>
+    </main>
+
+    <main id="cat-events" class="p-4 text-center"><p class="italic text-gray-500 py-10">Chargement des événements Facebook...</p></main>
+    <main id="cat-vip" class="hidden p-4"><div class="glass-card p-8 text-center"><i class="fas fa-crown gold-text text-4xl mb-4"></i><h2 class="western-font gold-text">Espace VIP</h2></div></main>
+    <main id="cat-map" class="hidden p-4"><h2 class="western-font gold-text text-lg mb-4">Accès</h2><div class="glass-card p-4 text-center">Place des Bougainvillées, Saly</div></main>
+
+    <footer class="fixed bottom-0 w-full p-4 bg-gradient-to-t from-black via-black/90 to-transparent z-50">
         <div class="flex space-x-2 max-w-md mx-auto">
             <a href="https://www.facebook.com/louisgrenier.salyletage" target="_blank" class="bg-blue-600 p-4 rounded-xl flex items-center justify-center">
                 <i class="fab fa-facebook-f text-white text-xl"></i>
             </a>
-            <a href="https://wa.me/221765500906?text=Bonjour%20L'Étage%20Saly,%20je%20souhaiterais%20réserver%20une%20table%20VIP." 
-               class="flex-1 bg-[#f0da8b] text-black py-4 rounded-xl font-bold text-center uppercase text-xs flex items-center justify-center space-x-2 western-font">
+            <a href="https://wa.me/221765500906?text=Bonjour%20L'Étage%20Saly,%20je%20souhaiterais%20réserver%20une%20table%20pour%20ce%20soir." 
+               class="flex-1 gold-bg text-black py-4 rounded-xl font-bold text-center uppercase text-xs flex items-center justify-center space-x-2 western-font active:scale-95 transition-transform">
                 <i class="fab fa-whatsapp text-xl"></i>
                 <span>Réserver une table</span>
             </a>
@@ -88,17 +129,15 @@
         function showCat(catId) {
             const categories = ['events', 'boissons', 'vip', 'shisha', 'map'];
             categories.forEach(id => {
-                const el = document.getElementById('cat-' + id);
-                if (el) el.classList.add('hidden');
-                const btn = document.getElementById('btn-' + id);
-                if (btn) btn.classList.remove('tab-active', 'text-gold');
+                document.getElementById('cat-' + id).classList.add('hidden');
+                document.getElementById('btn-' + id).classList.remove('tab-active');
+                document.getElementById('btn-' + id).classList.add('text-gray-400');
             });
             document.getElementById('cat-' + catId).classList.remove('hidden');
             document.getElementById('btn-' + catId).classList.add('tab-active');
+            document.getElementById('btn-' + catId).classList.remove('text-gray-400');
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
     </script>
 </body>
 </html>
-
-
-
