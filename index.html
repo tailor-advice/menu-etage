@@ -3,113 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L'Étage Saly - Carte Officielle</title>
+    <title>L'Étage Saly - Street Menu</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body { background: #020617; color: white; font-family: 'Inter', sans-serif; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); }
-        .neon-gold { text-shadow: 0 0 15px #fbbf24; color: #fbbf24; }
-        .tab-active { border-bottom: 3px solid #fbbf24; color: #fbbf24; }
-        .shisha-bg { 
-            background-image: linear-gradient(rgba(2, 6, 23, 0.8), rgba(2, 6, 23, 0.8)), url('https://images.unsplash.com/photo-1516054160408-0106209b5523?auto=format&fit=crop&w=800');
-            background-size: cover;
-            background-position: center;
+        @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+        body { background: #000000; color: white; font-family: 'Inter', sans-serif; }
+        
+        /* Style Graffiti basé sur l'image */
+        .graffiti-font { font-family: 'Permanent+Marker', cursive; }
+        .neon-green { color: #a3e635; text-shadow: 0 0 10px #a3e635; }
+        .neon-blue { color: #22d3ee; text-shadow: 0 0 10px #22d3ee; }
+        .neon-yellow { color: #fde047; text-shadow: 0 0 10px #fde047; }
+        
+        /* Bordures irrégulières style "Tags" */
+        .street-card { 
+            background: rgba(255, 255, 255, 0.05); 
+            border: 2px solid #a3e635; 
+            box-shadow: 5px 5px 0px #22d3ee;
+            border-radius: 4px;
         }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
+
+        .tab-active { 
+            border-bottom: 4px solid #a3e635; 
+            color: #a3e635; 
+            transform: skewX(-10deg);
+        }
+
+        /* Fond avec légères éclaboussures de peinture (CSS) */
+        .paint-bg {
+            background-image: radial-gradient(circle at 10% 20%, rgba(163, 230, 53, 0.1) 0%, transparent 20%),
+                              radial-gradient(circle at 90% 80%, rgba(34, 211, 238, 0.1) 0%, transparent 20%);
+        }
     </style>
 </head>
-<body class="pb-32">
+<body class="pb-32 paint-bg">
 
-    <header class="p-8 text-center bg-slate-900/40">
-        <h1 class="text-4xl font-black tracking-widest uppercase neon-gold mb-1">L'Étage</h1>
-        <p class="text-[10px] tracking-[0.4em] text-gray-400 uppercase font-bold">Saly Nightlife • Sénégal</p>
+    <header class="p-8 text-center border-b-2 border-dashed border-gray-800">
+        <h1 class="text-5xl font-black uppercase tracking-tighter neon-green font-serif italic">L'Étage</h1>
+        <p class="text-xs tracking-[0.3em] neon-blue mt-2 font-bold uppercase">Saly Street Vibes</p>
     </header>
 
-    <nav class="flex overflow-x-auto bg-black/80 sticky top-0 z-50 backdrop-blur-xl no-scrollbar border-b border-white/5 text-center">
-        <button onclick="showCat('events')" id="btn-events" class="tab-active flex-none w-1/4 py-4 font-bold uppercase text-[10px] tracking-widest">Soirées</button>
-        <button onclick="showCat('boissons')" id="btn-boissons" class="flex-none w-1/4 py-4 font-bold uppercase text-[10px] tracking-widest">Boissons</button>
-        <button onclick="showCat('vip')" id="btn-vip" class="flex-none w-1/4 py-4 font-bold uppercase text-[10px] tracking-widest">VIP</button>
-        <button onclick="showCat('shisha')" id="btn-shisha" class="flex-none w-1/4 py-4 font-bold uppercase text-[10px] tracking-widest">Chicha</button>
+    <nav class="flex overflow-x-auto bg-black sticky top-0 z-50 py-2 border-b border-gray-700 no-scrollbar">
+        <button onclick="showCat('boissons')" id="btn-boissons" class="tab-active flex-none w-1/3 py-3 font-black uppercase text-xs">Drinks</button>
+        <button onclick="showCat('shisha')" id="btn-shisha" class="flex-none w-1/3 py-3 font-black uppercase text-xs">Chicha</button>
+        <button onclick="showCat('vip')" id="btn-vip" class="flex-none w-1/3 py-3 font-black uppercase text-xs">VIP Zone</button>
     </nav>
 
-    <main id="cat-events" class="p-4 space-y-4">
-        <div class="relative h-64 rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-            <img src="https://images.unsplash.com/photo-1514525253361-bee8718a74a7?auto=format&fit=crop&w=800" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-black p-5 flex flex-col justify-end">
-                <h3 class="text-2xl font-black uppercase">Saly by Night</h3>
-                <p class="text-xs text-gray-300">Tous les soirs de 23h à l'aube</p>
-            </div>
-        </div>
-    </main>
-
-    <main id="cat-boissons" class="hidden p-4 space-y-6">
+    <main id="cat-boissons" class="p-6 space-y-8 animate-in fade-in duration-500">
         <div>
-            <h2 class="text-amber-500 font-bold uppercase text-xs mb-3 flex items-center"><i class="fa-solid fa-glass-whiskey mr-2"></i> Avec Alcool</h2>
-            <div class="space-y-2">
-                <div class="glass p-4 rounded-xl flex justify-between"><span>Vodka & RedBull</span><span class="font-bold">6.000 CFA</span></div>
-                <div class="glass p-4 rounded-xl flex justify-between"><span>Whisky & Coca</span><span class="font-bold">8.000 CFA</span></div>
-                <div class="glass p-4 rounded-xl flex justify-between border-l-2 border-amber-500"><span>Bouteille Vodka</span><span class="font-bold text-amber-500">50.000 CFA</span></div>
-                <div class="glass p-4 rounded-xl flex justify-between border-l-2 border-amber-500"><span>Bouteille Whisky</span><span class="font-bold text-amber-500">70.000 CFA</span></div>
-            </div>
-        </div>
-
-        <div>
-            <h2 class="text-cyan-400 font-bold uppercase text-xs mb-3 flex items-center"><i class="fa-solid fa-faucet-detergent mr-2"></i> Sans Alcool</h2>
-            <div class="space-y-2">
-                <div class="glass p-4 rounded-xl flex justify-between"><span>Coca-Cola (33cl)</span><span class="font-bold">2.000 CFA</span></div>
-                <div class="glass p-4 rounded-xl flex justify-between"><span>Jus de Fruit (50cl)</span><span class="font-bold">3.000 CFA</span></div>
-                <div class="glass p-4 rounded-xl flex justify-between"><span>Eau Minérale (50cl)</span><span class="font-bold">1.500 CFA</span></div>
-                <div class="glass p-4 rounded-xl flex justify-between text-cyan-300"><span>Gnamakoudji (Gingembre)</span><span class="font-bold">2.000 CFA</span></div>
-            </div>
-        </div>
-    </main>
-
-    <main id="cat-vip" class="hidden p-4 space-y-4 text-center">
-        <div class="p-10 border-2 border-amber-500/20 rounded-3xl bg-amber-500/5">
-            <i class="fa-solid fa-crown text-4xl text-amber-500 mb-4"></i>
-            <h3 class="text-xl font-bold uppercase">Espace Prestige</h3>
-            <p class="text-sm text-gray-400 mt-2">Pour toute réservation de bouteille, l'accès VIP est inclus. Contactez-nous pour les packs personnalisés.</p>
-        </div>
-    </main>
-
-    <main id="cat-shisha" class="hidden p-4 h-[60vh] flex items-center">
-        <div class="w-full shisha-bg rounded-[2rem] p-8 text-center border border-purple-500/30 shadow-2xl">
-            <div class="bg-black/40 backdrop-blur-sm p-6 rounded-2xl">
-                <i class="fa-solid fa-cloud text-purple-400 text-3xl mb-4"></i>
-                <h2 class="text-2xl font-black uppercase tracking-tighter mb-4">Le Lounge Chicha</h2>
-                <div class="text-gray-200 space-y-1 mb-6 italic">
-                    <p>Hawï • Love 66</p>
-                    <p>Menthe • Double Pomme</p>
+            <h2 class="text-2xl font-black italic neon-blue mb-4 uppercase skew-x-[-10deg]">Hard Drinks</h2>
+            <div class="space-y-3">
+                <div class="street-card p-4 flex justify-between items-center">
+                    <span class="font-bold">Vodka & RedBull</span>
+                    <span class="neon-green font-black">6.000</span>
                 </div>
-                <div class="inline-block bg-purple-600 px-8 py-3 rounded-full font-black text-xl shadow-lg shadow-purple-900/50">
-                    10.000 CFA
+                <div class="street-card p-4 flex justify-between items-center border-blue-400">
+                    <span class="font-bold">Whisky & Coca</span>
+                    <span class="neon-green font-black">8.000</span>
+                </div>
+                <div class="street-card p-4 flex flex-col border-yellow-400">
+                    <div class="flex justify-between w-full">
+                        <span class="font-black uppercase">Bottle Vodka</span>
+                        <span class="neon-yellow font-black">50.000</span>
+                    </div>
+                    <span class="text-[10px] text-gray-400 italic mt-1">Service VIP inclus</span>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="text-2xl font-black italic neon-green mb-4 uppercase skew-x-[-10deg]">Soft Side</h2>
+            <div class="space-y-3">
+                <div class="street-card p-4 flex justify-between items-center">
+                    <span>Coca-Cola <small class="text-gray-500">33cl</small></span>
+                    <span class="font-black">2.000</span>
+                </div>
+                <div class="street-card p-4 flex justify-between items-center">
+                    <span class="neon-blue">Gnamakoudji</span>
+                    <span class="font-black">2.000</span>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer class="fixed bottom-0 w-full p-4 flex flex-col space-y-2 bg-gradient-to-t from-black via-black/90 to-transparent">
-        <div class="flex space-x-2 w-full max-w-md mx-auto">
-            <a href="tel:+221339547357" class="bg-slate-800 p-5 rounded-2xl text-white border border-white/10 active:scale-90 transition">
-                <i class="fa-solid fa-phone-flip"></i>
+    <main id="cat-shisha" class="hidden p-6 animate-in zoom-in duration-300">
+        <div class="border-4 border-double border-cyan-500 p-6 rounded-lg text-center bg-black/60 relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-2 opacity-20 text-6xl">💨</div>
+            <h2 class="text-4xl font-black neon-blue mb-6 italic">SHISHA</h2>
+            <div class="space-y-4 text-xl font-bold">
+                <p class="text-white">Hawï <span class="text-cyan-500">•</span> Love 66</p>
+                <p class="text-white">Menthe <span class="text-cyan-500">•</span> D. Pomme</p>
+            </div>
+            <div class="mt-8 text-3xl font-black bg-lime-400 text-black inline-block px-6 py-2 rotate-[-3deg]">
+                10.000 CFA
+            </div>
+        </div>
+    </main>
+
+    <footer class="fixed bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+        <div class="max-w-md mx-auto flex space-x-2">
+            <a href="https://wa.me/221339547357" class="flex-1 bg-cyan-400 text-black py-4 rounded-none font-black text-center uppercase tracking-tighter shadow-[4px_4px_0px_#a3e635] active:translate-y-1 active:shadow-none transition-all flex items-center justify-center space-x-2">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+                <span>Book your table</span>
             </a>
-            <a href="https://wa.me/221339547357?text=Bonjour%20L'Étage%20Saly,%20je%20souhaiterais%20réserver%20une%20table%20pour%20ce%20soir." 
-               class="bg-[#25D366] flex-1 py-5 rounded-2xl text-center font-black text-white flex items-center justify-center space-x-3 active:scale-95 transition">
-                <i class="fa-brands fa-whatsapp text-2xl"></i>
-                <span class="tracking-widest uppercase text-sm">Réserver VIP</span>
+            <a href="tel:+221339547357" class="bg-lime-400 text-black p-4 shadow-[4px_4px_0px_#22d3ee]">
+                <i class="fa-solid fa-phone"></i>
             </a>
         </div>
     </footer>
 
     <script>
         function showCat(catId) {
-            ['events', 'boissons', 'vip', 'shisha'].forEach(id => {
-                document.getElementById('cat-' + id).classList.add('hidden');
-                document.getElementById('btn-' + id).classList.remove('tab-active', 'text-amber-500');
+            ['boissons', 'shisha', 'vip'].forEach(id => {
+                const el = document.getElementById('cat-' + id);
+                if(el) el.classList.add('hidden');
+                const btn = document.getElementById('btn-' + id);
+                if(btn) btn.classList.remove('tab-active');
             });
             document.getElementById('cat-' + catId).classList.remove('hidden');
-            document.getElementById('btn-' + catId).classList.add('tab-active', 'text-amber-500');
+            document.getElementById('btn-' + catId).classList.add('tab-active');
         }
     </script>
 </body>
