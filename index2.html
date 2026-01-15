@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'ETAGE - Menu 2026</title>
+    <style>
+        :root {
+            /* Palette extraite du PDF 2026 */
+            --primary: #FFD700; /* Or Vif */
+            --bg-dark: #001f4d; /* Bleu Nuit Profond (Fond PDF) */
+            --bg-card: #002b6b; /* Bleu légèrement plus clair pour les cartes */
+            --text-light: #ffffff;
+            --text-gray: #cfd8dc;
+            --whatsapp: #25D366;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: radial-gradient(circle at top, #003380 0%, var(--bg-dark) 60%); /* Effet de halo comme sur la cover */
+            color: var(--text-light);
+            padding-bottom: 90px;
+        }
+
+        /* HEADER AVEC LOGO */
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(180deg, rgba(0,31,77,0.95) 0%, rgba(0,31,77,0) 100%);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+        }
+
+        .logo-container {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 10px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000; /* Fond noir pour faire ressortir l'aigle */
+            overflow: hidden;
+        }
+
+        /* Remplacer src="" par votre image d'aigle */
+        .logo-img {
+            width: 80%;
+            height: auto;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+            text-shadow: 0px 0px 10px rgba(255, 215, 0, 0.3);
+        }
+
+        p.subtitle {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            font-weight: 300;
+        }
+
+        /* NAVIGATION */
+        .nav-scroller {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 15px 15px;
+            background-color: rgba(0, 31, 77, 0.5);
+            border-bottom: 1px solid var(--bg-card);
+            -webkit-overflow-scrolling: touch;
+            position: sticky;
+            top: 130px; /* Ajuster selon la taille du header */
+            z-index: 90;
+        }
+
+        .nav-scroller::-webkit-scrollbar { display: none; }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--bg-card);
+            color: var(--text-gray);
+            padding: 10px 20px;
+            margin-right: 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .nav-btn.active {
+            background-color: var(--primary);
+            color: #001f4d; /* Texte bleu sur fond or */
+            border-color: var(--primary);
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+        }
+
+        /* CONTENU */
+        .menu-section {
+            padding: 20px;
+            display: none;
+            animation: slideUp 0.4s ease-out;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .menu-section.active { display: block; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+
+        /* CARDS */
+        .drink-card {
+            background-color: var(--bg-card);
+            border-radius: 15px;
+            padding: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .drink-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        .drink-info span {
+            font-size: 0.85rem;
+            color: var(--primary); /* Format 75cl en or */
+            opacity: 0.8;
+        }
+
+        .drink-price {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            white-space: nowrap;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.2);
+        }
+
+        /* BOUTON WHATSAPP */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: white;
+            padding: 16px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1000;
+            width: 90%;
+            max-width: 400px;
+            justify-content: center;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <span style="font-size: 2rem;">🦅</span> </div>
+        <h1>L'ETAGE</h1>
+        <p class="subtitle">Discothèque - Terrasse - Snack</p>
+    </header>
+
+    <div class="nav-scroller">
+        <button class="nav-btn active" onclick="showCategory('champagne')">Champagne</button>
+        <button class="nav-btn" onclick="showCategory('vodka')">Vodka</button>
+        <button class="nav-btn" onclick="showCategory('whisky')">Whisky</button>
+        <button class="nav-btn" onclick="showCategory('rhum')">Rhum</button>
+        <button class="nav-btn" onclick="showCategory('tequila')">Tequila</button>
+        <button class="nav-btn" onclick="showCategory('cognac')">Cognac & Liqueurs</button>
+        <button class="nav-btn" onclick="showCategory('gin')">Gin</button>
+    </div>
+
+    <div id="champagne" class="menu-section active">
+        <h2>Champagne</h2>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Freixenet</h3><span>Sans Alcool</span></div>
+            <div class="drink-price">30.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Nicolas Feuillatte</h3><span>75cl</span></div>
+            <div class="drink-price">70.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Mumm</h3><span>75cl</span></div>
+            <div class="drink-price">80.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Laurent Perrier</h3><span>75cl</span></div>
+            <div class="drink-price">80.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Moët & Chandon</h3><span>75cl</span></div>
+            <div class="drink-price">90.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Ruinart Brut</h3><span>75cl</span></div>
+            <div class="drink-price">100.000 F</div>
+        </div>
+         <div class="drink-card">
+            <div class="drink-info"><h3>Moët & Chandon</h3><span>Magnum 1.5L</span></div>
+            <div class="drink-price">180.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Ruinart Blanc de Blanc</h3><span>75cl</span></div>
+            <div class="drink-price">200.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Dom Pérignon Luminous</h3><span>75cl</span></div>
+            <div class="drink-price">500.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Armand de Brignac Gold</h3><span>75cl</span></div>
+            <div class="drink-price">1.000.000 F</div>
+        </div>
+    </div>
+
+    <div id="vodka" class="menu-section">
+        <h2>Vodka</h2>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Grey Goose</h3><span>75cl</span></div>
+            <div class="drink-price">80.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Belvédère</h3><span>70cl</span></div>
+            <div class="drink-price">90.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Ciroc</h3><span>75cl</span></div>
+            <div class="drink-price">100.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Belvédère Intense</h3><span>1L</span></div>
+            <div class="drink-price">120.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Belvédère</h3><span>1.75L</span></div>
+            <div class="drink-price">150.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Belvédère</h3><span>3L</span></div>
+            <div class="drink-price">250.000 F</div>
+        </div>
+    </div>
+
+    <div id="whisky" class="menu-section">
+        <h2>Whisky</h2>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Red Label</h3><span>75cl</span></div>
+            <div class="drink-price">70.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Ballantines</h3><span>75cl</span></div>
+            <div class="drink-price">80.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Black Label</h3><span>75cl</span></div>
+            <div class="drink-price">80.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Chivas 12 ans</h3><span>75cl</span></div>
+            <div class="drink-price">90.000 F</div>
+        </div>
+         <div class="drink-card">
+            <div class="drink-info"><h3>Double Black</h3><span>75cl</span></div>
+            <div class="drink-price">130.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Chivas 18 ans</h3><span>75cl</span></div>
+            <div class="drink-price">150.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Jack Daniel's / JB</h3><span>75cl</span></div>
+            <div class="drink-price">Sur demande</div>
+        </div>
+    </div>
+
+    <div id="rhum" class="menu-section">
+        <h2>Rhum</h2>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Rhum Blanc</h3><span>1L</span></div>
+            <div class="drink-price">50.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Bacardi Blanc</h3><span>1L</span></div>
+            <div class="drink-price">70.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Saint-James</h3><span>1L</span></div>
+            <div class="drink-price">70.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Bacardi Brun</h3><span>1L</span></div>
+            <div class="drink-price">80.000 F</div>
+        </div>
+         <div class="drink-card">
+            <div class="drink-info"><h3>Saint-James Brun</h3><span>1L</span></div>
+            <div class="drink-price">80.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Diplomatico</h3><span>70cl</span></div>
+            <div class="drink-price">120.000 F</div>
+        </div>
+    </div>
+
+    <div id="tequila" class="menu-section">
+        <h2>Tequila</h2>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Don Angel Blanco</h3><span></span></div>
+            <div class="drink-price">50.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Patron</h3><span></span></div>
+            <div class="drink-price">80.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Don Julio</h3><span></span></div>
+            <div class="drink-price">100.000 F</div>
+        </div>
+    </div>
+    
+    <div id="cognac" class="menu-section">
+        <h2>Cognac & Liqueurs</h2>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Martini Blanc</h3><span>1L</span></div>
+            <div class="drink-price">50.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Baileys</h3><span>75cl</span></div>
+            <div class="drink-price">60.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Get 27 / 31</h3><span>1L</span></div>
+            <div class="drink-price">60.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Campari</h3><span>1L</span></div>
+            <div class="drink-price">60.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Jägermeister</h3><span>70cl</span></div>
+            <div class="drink-price">60.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Hennessy</h3><span>70cl</span></div>
+            <div class="drink-price">90.000 F</div>
+        </div>
+         <div class="drink-card">
+            <div class="drink-info"><h3>Hennessy</h3><span>1L</span></div>
+            <div class="drink-price">100.000 F</div>
+        </div>
+    </div>
+
+    <div id="gin" class="menu-section">
+        <h2>Gin</h2>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Bombay Sapphire</h3><span>75cl</span></div>
+            <div class="drink-price">90.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Hendrick's</h3><span>70cl</span></div>
+            <div class="drink-price">100.000 F</div>
+        </div>
+        <div class="drink-card">
+            <div class="drink-info"><h3>Gordon's</h3><span>75cl</span></div>
+            <div class="drink-price">Sur demande</div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/221765500960?text=Bonjour,%20je%20souhaite%20réserver%20une%20table%20au%20Club" class="whatsapp-float" target="_blank">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c1.001.577 1.913.843 3.125.843 3.181 0 5.768-2.587 5.768-5.766 0-3.18-2.587-5.767-5.768-5.767zm12 5.766c0 6.627-5.373 12-12 12-2.19 0-4.22-.565-6.009-1.545l-4.512 1.183 1.205-4.399c-1.127-1.879-1.782-4.079-1.782-6.425 0-6.627 5.373-12 12-12s12 5.373 12 12zm-4.706 3.328c-.287-.144-1.697-.837-1.96-.933-.262-.096-.453-.144-.643.144-.191.287-.733.933-.898 1.125-.164.192-.329.215-.615.072-1.616-.806-2.677-1.862-3.766-3.791-.129-.228-.014-.352.129-.494.129-.129.287-.335.431-.503.144-.168.191-.287.287-.479.096-.192.048-.359-.024-.502-.072-.144-.643-1.55-.881-2.123-.232-.558-.469-.482-.643-.491-.164-.009-.352-.009-.54-.009-.191 0-.503.072-.766.359-.263.287-1.005.981-1.005 2.393 0 1.411 1.029 2.776 1.173 2.967.144.191 2.024 3.091 4.904 4.334 2.88 1.243 2.88.828 3.398.778.518-.049 1.697-.693 1.936-1.362.239-.67.239-1.244.168-1.363-.072-.119-.263-.191-.55-.335z"/>
+        </svg>
+        RÉSERVER (WhatsApp)
+    </a>
+
+    <script>
+        function showCategory(categoryId) {
+            document.querySelectorAll('.menu-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(categoryId).classList.add('active');
+            event.target.classList.add('active');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
+
+</body>
+</html>
